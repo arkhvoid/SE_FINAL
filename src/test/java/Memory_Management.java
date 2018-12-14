@@ -85,7 +85,7 @@ public class Memory_Management {
         public static int LRU(List<String> i, int frame){
              return 0;
         }
-//SJunWah
+
         public static int Optimal(List<String> i, int frame){
              String[] memory = new String[frame];
 		int pagefault = 0;
