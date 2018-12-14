@@ -81,10 +81,62 @@ public class Memory_Management {
 		}
 		return pagefault;
         }
-
-        public static int LRU(List<String> i, int frame){
-             return 0;
-        }
+	
+        public static int LRU(List<String> i, int frame) {
+		String[] memory = new String[frame];
+		int pagefault = 0;
+		int n = 0;
+		int index = 0;
+		boolean swapped = false;
+		for(n=0;n<i.size();n++) {
+			int count = 0;
+			boolean same = false;
+			while(count<frame) {
+				same = false;
+				if(i.get(n).equals(memory[count])) {
+					same = true;
+					break;
+				}
+				count++;
+			}
+			if(!same) {
+				if(index>=frame) {
+					index=0;
+					swapped = true;
+				}
+				if(!swapped) {
+					memory[index] = i.get(n);
+					index++;
+				}
+				if(swapped) {
+					List<Integer> ru = new ArrayList<>();
+					int count2=0;
+					for(int n2=n-1; n2>=0;n2--) {
+						if(ru.size()>=2) {
+							while(count2<frame) {
+								if(!ru.contains(count2)) {
+									memory[count2] = i.get(n);
+									break;
+								}
+								count2++;
+							}
+						}
+						for(int num = 0; num<frame; num++) {
+							if(memory[num].equals(i.get(n2))) {
+								if(!ru.contains(num)) {
+									ru.add(num);
+									break;
+								}
+							}
+						
+						}
+					}
+				}
+				pagefault++;
+			}
+		}
+		return pagefault;	
+	}
 
         public static int Optimal(List<String> i, int frame){
              String[] memory = new String[frame];
