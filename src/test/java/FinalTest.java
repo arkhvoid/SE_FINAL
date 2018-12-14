@@ -22,5 +22,10 @@ public class FinalTest {
 		bay.add("1"); bay.add("2"); bay.add("3"); bay.add("4"); bay.add("5");
 		assertEquals(9, Memory_Management.FIFO(bay, frame));
 	}
+	public void OptimalShouldReturnExpectedNumber() {
+		bay.add("1"); bay.add("2"); bay.add("3"); bay.add("4"); bay.add("1"); bay.add("2"); bay.add("5"); 
+		bay.add("1"); bay.add("2"); bay.add("3"); bay.add("4"); bay.add("5");
+		assertEquals(7, Memory_Management.Optimal(bay, frame));
+	}
 	
 }
