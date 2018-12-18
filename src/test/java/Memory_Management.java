@@ -201,6 +201,6 @@ public class Memory_Management {
 				pagefault++;
 			}
 		}
-		return pagefault;	
+		return pagefault;	  
 	}
 }
